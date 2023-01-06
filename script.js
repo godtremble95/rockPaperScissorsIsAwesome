@@ -1,5 +1,8 @@
 const choices = ['rock', 'paper', 'scissors'];
 let playerScore = 0;
+let computerScore = 0;
+let computerSelection;
+let playerSelection
 
 // get computer's choice
 function getComputerChoice() {
@@ -10,9 +13,9 @@ function getComputerChoice() {
 function game() {
     // play 5 round of the game
     for (i = 0; i < 5; i++) {
-        let computerSelection = getComputerChoice();
+        computerSelection = getComputerChoice();
         // prompt user to choose rock, paper, or scissors
-        let playerSelection = prompt(`Choose ROCK, PAPER, or SCISSORS:\nGame ${i + 1} of 5`);
+        playerSelection = prompt(`Choose ROCK, PAPER, or SCISSORS:\nGame ${i + 1} of 5`);
         if (playerSelection === null) {break;} 
         playerSelection = playerSelection.toLowerCase();
         while (!choices.includes(playerSelection)) {
@@ -20,40 +23,41 @@ function game() {
             if (playerSelection === null) {continue;}
             playerSelection = playerSelection.toLowerCase();
         }
-        console.log(playRound(playerSelection, computerSelection));
+        console.log(playRound());
     }
-    console.log(`Game Over!\nScore: ${playerScore}`)
+    const winner = (playerScore > computerScore)? "Player is victorious!":
+                   (playerScore < computerScore)? "Computer is victorious!":
+                   "It's a draw!";
+    console.log(`Game Over!\nPlayer: ${playerScore}\tComputer: ${computerScore}\n${winner}`);
 }
 
 // compare results and log answer
-function playRound(playerSelection, computerSelection) {
+function playRound() {
     if (playerSelection === computerSelection) {
-        return 'Draw!';
+        return didWin();
     }
     switch (playerSelection) {
         case 'rock':
-            if (computerSelection === 'paper') {
-                return `You Lose! ${computerSelection} beats ${playerSelection}`
-            };
-            playerScore++
-            return `You Win! ${playerSelection} beats ${computerSelection}`;
-
+            return (computerSelection === 'scissors')? didWin(true) : didWin(false);
         case 'paper':
-            if (computerSelection === 'scissors') {
-                return `You Lose! ${computerSelection} beats ${playerSelection}`
-            };
-            playerScore++
-            return `You Win! ${playerSelection} beats ${computerSelection}`;
-
+            return (computerSelection === 'rock')? didWin(true) : didWin(false);
         case 'scissors':
-            if (computerSelection === 'rock') {
-                return `You Lose! ${computerSelection} beats ${playerSelection}`
-            };
-            playerScore++
-            return `You Win! ${playerSelection} beats ${computerSelection}`;
-
+            return (computerSelection === 'paper')? didWin(true) : didWin(false);
         default:
             return 'Something went very, very wrong :(';
+    }
+}
+
+function didWin(win){
+    switch (win){
+        case true:
+            playerScore++
+            return `You Win! ${playerSelection.replace(playerSelection[0], playerSelection[0].toUpperCase())} Beats ${computerSelection.replace(computerSelection[0], computerSelection[0].toUpperCase())}\nPlayer: ${playerScore}\tComputer: ${computerScore}`;
+        case false:
+            computerScore++
+            return `You Lose! ${computerSelection.replace(computerSelection[0], computerSelection[0].toUpperCase())} Beats ${playerSelection.replace(playerSelection[0], playerSelection[0].toUpperCase())}\nPlayer: ${playerScore}\tComputer: ${computerScore}`;
+        default:
+            return `Draw!\nPlayer: ${playerScore}\tComputer: ${computerScore}`;
     }
 }
 
