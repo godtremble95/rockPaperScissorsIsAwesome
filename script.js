@@ -1,5 +1,8 @@
+const body = document.querySelector('body');
 const buttons = document.querySelectorAll('button');
 const results = document.getElementById('results');
+const gameOver = document.createElement('p');
+const resetBtn = document.createElement('button');
 
 let playerScore = 0;
 let computerScore = 0;
@@ -16,13 +19,16 @@ function playRound() {
   const playerSelection = this.id;
   const computerSelection = getComputerChoice();
   results.textContent = getResult(playerSelection, computerSelection);
+  if (playerScore >= 5 || computerScore >= 5) {
+    endGame();
+  }
 }
 
 // decide winner and award points
 function getResult(playerSelection, computerSelection){
   let win;
   if (playerSelection === computerSelection) {
-    return `Draw!\nPlayer: ${playerScore}\tComputer: ${computerScore}`;
+    return `Draw! Player: ${playerScore}\tComputer: ${computerScore}`;
   }
   switch (playerSelection) {
     case 'rock':
@@ -39,7 +45,7 @@ function getResult(playerSelection, computerSelection){
   }
   switch (win){
     case true:
-      playerScore++
+      playerScore++;
       return `You Win! ${playerSelection.replace(playerSelection[0], playerSelection[0].toUpperCase())} Beats ${computerSelection.replace(computerSelection[0], computerSelection[0].toUpperCase())}\nPlayer: ${playerScore}\tComputer: ${computerScore}`;
     case false:
       computerScore++
@@ -47,6 +53,24 @@ function getResult(playerSelection, computerSelection){
     default:
       console.log('Something went very, very wrong :(');
   }
+}
+
+function reset() {
+  playerScore = 0;
+  computerScore = 0;
+  results.textContent = '';
+  body.removeChild(gameOver);
+  body.removeChild(resetBtn);
+  buttons.forEach(button => body.appendChild(button));
+}
+
+function endGame() {
+  buttons.forEach(button => body.removeChild(button));
+  gameOver.textContent = 'Game Over!';
+  resetBtn.textContent = 'Try Again?';
+  resetBtn.addEventListener('click',reset);
+  body.appendChild(gameOver);
+  body.appendChild(resetBtn);
 }
 
 //Create Listener for player's selection
