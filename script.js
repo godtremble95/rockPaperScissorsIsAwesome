@@ -75,24 +75,3 @@ function endGame() {
 
 //Create Listener for player's selection
 buttons.forEach(button => button.addEventListener('click', playRound));
-
-/* function game() {
-    // play 5 round of the game
-    for (i = 0; i < 5; i++) {
-        computerSelection = getComputerChoice();
-        // prompt user to choose rock, paper, or scissors
-        playerSelection = prompt(`Choose ROCK, PAPER, or SCISSORS:\nGame ${i + 1} of 5`);
-        if (playerSelection === null) {break;} 
-        playerSelection = playerSelection.toLowerCase();
-        while (!choices.includes(playerSelection)) {
-            playerSelection = prompt('Choice must be ROCK, PAPER, or SCISSORS')
-            if (playerSelection === null) {continue;}
-            playerSelection = playerSelection.toLowerCase();
-        }
-        console.log(playRound());
-    }
-    const winner = (playerScore > computerScore)? "Player is victorious!":
-                   (playerScore < computerScore)? "Computer is victorious!":
-                   "It's a draw!";
-    console.log(`Game Over!\nPlayer: ${playerScore}\tComputer: ${computerScore}\n${winner}`);
-} */
