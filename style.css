@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Nanum Pen Script', sans-serif;
   /*outline: black solid 1px;*/
 }
 
@@ -17,15 +17,21 @@ body {
 }
 
 p {
-  font-size: 1.25rem;
+  font-size: 1.75rem;
+  text-align: center;
   vertical-align: middle;
   align-self: center;
 }
 
-img {
+button > img {
   width: 96px;
   height: auto;
   vertical-align: middle;
+}
+
+img {
+  width: 144px;
+  height: auto;
 }
 
 button {
@@ -47,6 +53,7 @@ button:active {
 }
 
 footer {
+  font-size: 1.125rem;
   margin-top: auto;
   width: 100%;
   height: 25px;
@@ -58,12 +65,13 @@ footer {
   background-color: rgba(100, 100, 100, 0.507);
 }
 
-/*#gameOver {
+#gameOver {
+  max-width: 200px;
   align-self: center;
-}*/
+}
 
 .subText {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .container {
@@ -80,7 +88,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .game {

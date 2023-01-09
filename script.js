@@ -1,3 +1,4 @@
+const gameBody = document.querySelector('.game');
 const options = document.querySelector('#options');
 const buttons = document.querySelectorAll('button');
 const results = document.getElementById('results');
@@ -5,6 +6,7 @@ const playerDisplay = document.querySelector('.playerScore');
 const compDisplay = document.querySelector('.computerScore');
 const gameOver = document.createElement('p');
 const resetBtn = document.createElement('button');
+const gameOverImg = document.createElement('img');
 
 let playerScore = 0;
 let computerScore = 0;
@@ -62,20 +64,28 @@ function getResult(playerSelection, computerSelection){
 function reset() {
   playerScore = 0;
   computerScore = 0;
+  playerDisplay.textContent = 'You: 0';
+  compDisplay. textContent = 'Computer: 0'
   results.textContent = '';
   options.removeChild(gameOver);
   options.removeChild(resetBtn);
+  gameBody.removeChild(gameOverImg);
   buttons.forEach(button => options.appendChild(button));
 }
 
 function endGame() {
   buttons.forEach(button => options.removeChild(button));
-  gameOver.textContent = 'Game Over!';
+  gameOver.textContent =
+    playerScore > computerScore ? 'You\'ve won the battle, but the war is far from over!'
+    : 'The quickest way of ending a war is to lose it.';
   gameOver.id = 'gameOver';
+  gameOverImg.src = (playerScore > computerScore)? './img/victory.png' : './img/defeat.png';
+  gameOverImg.alt = (playerScore > computerScore)? 'victory trophy' : 'defeat';
   resetBtn.innerHTML = '<img src="./img/reset.png" alt="reset" draggable="false">';
   resetBtn.addEventListener('click',reset);
   options.appendChild(gameOver);
   options.appendChild(resetBtn);
+  gameBody.appendChild(gameOverImg);
 }
 
 //Create Listener for player's selection
