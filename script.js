@@ -1,6 +1,8 @@
 const options = document.querySelector('#options');
 const buttons = document.querySelectorAll('button');
 const results = document.getElementById('results');
+const playerDisplay = document.querySelector('.playerScore');
+const compDisplay = document.querySelector('.computerScore');
 const gameOver = document.createElement('p');
 const resetBtn = document.createElement('button');
 
@@ -19,6 +21,8 @@ function playRound() {
   const playerSelection = this.id;
   const computerSelection = getComputerChoice();
   results.textContent = getResult(playerSelection, computerSelection);
+  playerDisplay.textContent = `You: ${playerScore}`;
+  compDisplay.textContent = `Computer: ${computerScore}`;
   if (playerScore >= 5 || computerScore >= 5) {
     endGame();
   }
@@ -28,7 +32,7 @@ function playRound() {
 function getResult(playerSelection, computerSelection){
   let win;
   if (playerSelection === computerSelection) {
-    return `Draw! Player: ${playerScore}\tComputer: ${computerScore}`;
+    return 'Draw!';
   }
   switch (playerSelection) {
     case 'rock':
@@ -46,10 +50,10 @@ function getResult(playerSelection, computerSelection){
   switch (win){
     case true:
       playerScore++;
-      return `You Win! ${playerSelection.replace(playerSelection[0], playerSelection[0].toUpperCase())} Beats ${computerSelection.replace(computerSelection[0], computerSelection[0].toUpperCase())}\nPlayer: ${playerScore}\tComputer: ${computerScore}`;
+      return `You Win! ${playerSelection.replace(playerSelection[0], playerSelection[0].toUpperCase())} Beats ${computerSelection.replace(computerSelection[0], computerSelection[0].toUpperCase())}`;
     case false:
       computerScore++
-      return `You Lose! ${computerSelection.replace(computerSelection[0], computerSelection[0].toUpperCase())} Beats ${playerSelection.replace(playerSelection[0], playerSelection[0].toUpperCase())}\nPlayer: ${playerScore}\tComputer: ${computerScore}`;
+      return `You Lose! ${computerSelection.replace(computerSelection[0], computerSelection[0].toUpperCase())} Beats ${playerSelection.replace(playerSelection[0], playerSelection[0].toUpperCase())}`;
     default:
       console.log('Something went very, very wrong :(');
   }
