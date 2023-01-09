@@ -4,13 +4,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
   <title>Rock Paper Scissors</title>
 </head>
 <body>
-  <div id="results"></div>
-  <button id="rock">Rock</button>
-  <button id="paper">Paper</button>
-  <button id="scissors">Scissors</button>
+  <div class="container">
+    <div class="game">
+      <h1>Rock, Paper, Scissors</h1>
+      <p class="subText">Is Awesome</p>
+      <div class="score">
+        <p class="playerScore">You: 0</p>
+        <p class="computerScore">Computer: 0</p>
+      </div>
+      <div id="options">
+        <button id="rock"><img src="./img/rock.png" alt="rock" draggable="false"></button>
+        <button id="paper"><img src="./img/paper.png" alt="paper" draggable="false"></button>
+        <button id="scissors"><img src="./img/scissors.png" alt="scissor" draggable="false"></button>
+      </div>
+      <p id="results"></p>
+    </div>
+    <footer>Artwork by <a href="https://www.flaticon.com/authors/icongeek26">Icongeek26</a></footer>
+  </div>
   
   <script src="./script.js"></script>
 </body>

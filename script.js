@@ -1,4 +1,4 @@
-const body = document.querySelector('body');
+const options = document.querySelector('#options');
 const buttons = document.querySelectorAll('button');
 const results = document.getElementById('results');
 const gameOver = document.createElement('p');
@@ -59,18 +59,19 @@ function reset() {
   playerScore = 0;
   computerScore = 0;
   results.textContent = '';
-  body.removeChild(gameOver);
-  body.removeChild(resetBtn);
-  buttons.forEach(button => body.appendChild(button));
+  options.removeChild(gameOver);
+  options.removeChild(resetBtn);
+  buttons.forEach(button => options.appendChild(button));
 }
 
 function endGame() {
-  buttons.forEach(button => body.removeChild(button));
+  buttons.forEach(button => options.removeChild(button));
   gameOver.textContent = 'Game Over!';
-  resetBtn.textContent = 'Try Again?';
+  gameOver.id = 'gameOver';
+  resetBtn.innerHTML = '<img src="./img/reset.png" alt="reset" draggable="false">';
   resetBtn.addEventListener('click',reset);
-  body.appendChild(gameOver);
-  body.appendChild(resetBtn);
+  options.appendChild(gameOver);
+  options.appendChild(resetBtn);
 }
 
 //Create Listener for player's selection
